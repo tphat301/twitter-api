@@ -1,0 +1,438 @@
+{
+  "info": {
+    "_postman_id": "f14d4fe4-2791-406d-a619-58c3ae810bf0",
+    "name": "Twitter-API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20905751"
+  },
+  "item": [
+    {
+      "name": "register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Đăng ký thành công', function () {\r",
+              "  pm.response.to.have.status(200)\r",
+              "  const responseJson = pm.response.json()\r",
+              "  pm.environment.set('access_token', responseJson.result.access_token)\r",
+              "  pm.environment.set('refresh_token', responseJson.result.refresh_token)\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"dolamthanhphat3@gmail.com\",\r\n    \"name\":\"Phát Backend Dev 2\",\r\n    \"password\" : \"Aa@1234567667\",\r\n    \"confirm_password\": \"Aa@1234567667\",\r\n    \"date_of_birth\": \"2024-04-26T11:56:32.780Z\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/register",
+          "host": ["{{host}}"],
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Đăng nhập thành công', function () {\r",
+              "  pm.response.to.have.status(200)\r",
+              "  const responseJson = pm.response.json()\r",
+              "  pm.environment.set('access_token', responseJson.result.access_token)\r",
+              "  pm.environment.set('refresh_token', responseJson.result.refresh_token)\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"dolamthanhphat@gmail.com\",\r\n    \"password\" : \"Aa@12345676678910\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/login",
+          "host": ["{{host}}"],
+          "path": ["users", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refresh token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"refresh_token\": \"{{refresh_token}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/refresh-token",
+          "host": ["{{host}}"],
+          "path": ["users", "refresh-token"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"refresh_token\": \"{{refresh_token}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/logout",
+          "host": ["{{host}}"],
+          "path": ["users", "logout"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "verify-email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email_verify_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyYjMzYmRkZjMwMDliM2ZlNmNhY2JiIiwidG9rZW5fdHlwZSI6MywiaWF0IjoxNzE0MTA3MzI1LCJleHAiOjE3MTQ3MTIxMjV9.UE0SZpoWwd7QNJkw0mkhyQHdvAg5HI4LunqAX16si48\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/verify-email",
+          "host": ["{{host}}"],
+          "path": ["users", "verify-email"]
+        },
+        "description": "verify-email"
+      },
+      "response": []
+    },
+    {
+      "name": "resend verify email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/resend-verify-email",
+          "host": ["{{host}}"],
+          "path": ["users", "resend-verify-email"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Forgot password token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"dolamthanhphat@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/forgot-password",
+          "host": ["{{host}}"],
+          "path": ["users", "forgot-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "verify forgot password token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"forgot_password_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyYjMzYmRkZjMwMDliM2ZlNmNhY2JiIiwidG9rZW5fdHlwZSI6MiwiaWF0IjoxNzE0MTQ0MjI5LCJleHAiOjE3MTQ3NDkwMjl9.bIb-oO4__XL1VjCTYLJVtJFYEZEAfIg3vb9FsLVwQsc\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/verify-forgot-password",
+          "host": ["{{host}}"],
+          "path": ["users", "verify-forgot-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Reset password",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"dolamthanhphat@gmail.com\",\r\n    \"password\": \"Aa@12345676678\",\r\n    \"confirm_password\":\"Aa@12345676678\",\r\n    \"forgot_password_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyYjMzYmRkZjMwMDliM2ZlNmNhY2JiIiwidG9rZW5fdHlwZSI6MiwiaWF0IjoxNzE0MTQ0MjI5LCJleHAiOjE3MTQ3NDkwMjl9.bIb-oO4__XL1VjCTYLJVtJFYEZEAfIg3vb9FsLVwQsc\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/reset-password",
+          "host": ["{{host}}"],
+          "path": ["users", "reset-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Me",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "host": true,
+          "user-agent": true,
+          "accept": true,
+          "accept-encoding": true,
+          "connection": true
+        }
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/users/me",
+          "host": ["{{host}}"],
+          "path": ["users", "me"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Me",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Đỗ Lâm Thành Phát\",\r\n    \"location\": \"Quận 12 Tp Hồ Chí Minh\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/me",
+          "host": ["{{host}}"],
+          "path": ["users", "me"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "user profile",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/users/user662e6035b3cfeebb603fcd53",
+          "host": ["{{host}}"],
+          "path": ["users", "user662e6035b3cfeebb603fcd53"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "follow",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"followed_user_id\":\"662b968174849623e5da44b4\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/follow",
+          "host": ["{{host}}"],
+          "path": ["users", "follow"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Unfollow",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/users/follow/662b968174849623e5da44b4",
+          "host": ["{{host}}"],
+          "path": ["users", "follow", "662b968174849623e5da44b4"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Change password",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"old_password\": \"Aa@12345676678\",\r\n    \"password\": \"Aa@12345676678910\",\r\n    \"confirm_password\": \"Aa@12345676678910\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/users/change-password",
+          "host": ["{{host}}"],
+          "path": ["users", "change-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "upload image",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": [
+                "/C:/Users/Administrator/Downloads/dong-luc-hoc-tap-1.jpg",
+                "/C:/Users/Administrator/Downloads/407272834_364303106171515_7003947273413698056_n.jpg",
+                "/C:/Users/Administrator/Downloads/ảnh thẻ.jpg"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{host}}/medias/upload-image",
+          "host": ["{{host}}"],
+          "path": ["medias", "upload-image"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "video",
+              "type": "file",
+              "src": "/C:/Users/Administrator/Downloads/e46f7f29-681ae096.mp4"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{host}}/medias/upload-video",
+          "host": ["{{host}}"],
+          "path": ["medias", "upload-video"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ]
+}
